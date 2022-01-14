@@ -5,11 +5,30 @@ fv_v = table2array(fv_cycle(:,2))/3.6; % [km/h] to [m/s]
 fv_s = td2sd(fv_v); % frontal vehicle location / spatial domain
 %}
 
-%% Host vehicle DP data loading and driving simulation settings
-aa = [0:30]
-nnn = aa*3.6
 
-aa1 = (aa.*(aa>=16.6666))*3.6;
-aa2 = (aa-(15/3.6)).*((aa<16.6666) & (aa>=(15/3.6)))*3.6;
-aa3 = (aa-(15/3.6)).*(aa<(15/3.6))*0;
-aanew = aa1+aa2+aa3
+%{
+aa = magic(6);
+aaorigin = aa
+%bb = ones(6,6)
+
+bb = inf*(aa>10)
+
+cc = aa.*bb;
+cc(isnan(cc))=1;
+aa = aa.*cc
+%}
+
+%{
+aa = magic(3)
+bb = [1 2 3;4 5 6;7 8 9]
+
+cc = (aa-bb < 0)
+
+cci = ~cc
+%}
+
+aa = magic(5);
+bb = zeros(5);
+for i = 1:5
+    bb(i,:) = min(aa(i,:));
+end
