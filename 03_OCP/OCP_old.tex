@@ -1,0 +1,42 @@
+\documentclass[a4paper]{article}
+\usepackage[hangul]{kotex}
+\usepackage[a4paper,left=25mm,right=25mm,top=30mm,bottom=30mm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{chngcntr}
+
+\graphicspath{{./fig/}}
+
+\begin{document}
+
+\textbf{Optimal Control Problem, Re-Formulated}
+
+\begin{align}
+	\underset{u_p(t),u_b(t)}{\mbox{minimize}} \ & J = \Phi + \int_{0}^{t_f} P_{motor}(v(t),F_{tire}(t))dt \\ \\
+	\mbox{subject to} \
+	& {ds(t)\over dt} = v(t) \\
+	& \dot{v}(t) = {F_m(t)\over m}+{F_b(t)\over m}-{\rho C_d A_F \over 2m}v^2(t) - g(C_r \cos{\alpha(s(t))} + \sin{\alpha(s(t)}) \\
+	& = {F_m(t) \over m} + {F_b(t) \over m} - {F_{air} \over m} - {F_\alpha (t) \over m} \\
+	& v(0) = 0[m/s] \\
+	& v(t_f) = \text{free} \\
+	& s(0) = -50[m] \\
+	& s(t_f) = \text{free} \\
+	& u_{p,min}(v(t),t) \le u_p(t) \le u_{p,max}(v(t),t) \\
+	& 0 \le u_b(t) \le u_{b,max} \\
+	& v_{min} \le v(t) \le v_{max} \\
+	& F_{m,min}(v(t)) \le F_m(t) \le F_{m,max}(v(t)) \\
+	& F_{b,min} \le F_b(t) \le F_{b,max} \\
+	& F_m(t)F_b(t) \ge 0 \\
+	& s(t) \le s_f(t) - 20 [m]
+\end{align}
+ 
+
+
+
+	
+\end{document}
