@@ -1,0 +1,52 @@
+\documentclass[a4paper]{article}
+\usepackage[hangul]{kotex}
+\usepackage[a4paper,left=25mm,right=25mm,top=30mm,bottom=30mm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{chngcntr}
+
+\graphicspath{{./fig/}}
+
+\begin{document}
+	
+	\textbf{Optimal Control Problem, 3-State}
+	
+	\begin{align}
+		\underset{F_m(t),F_b(t)}{\mbox{minimize}} \ & J = \mathbf{\Phi}(s(t_f)) + \int_{0}^{t_f} P_{motor}(v(t),F_{m}(t))dt \\ \\
+		\mbox{subject to} \
+		{ds(t)\over dt} & = v(t) \\
+		\dot{v}(t) & = {F_m(t)\over m}+{F_b(t)\over m}-{\rho C_d A_F \over 2m}v^2(t) - g(C_r \cos{\alpha(s(t))} + \sin{\alpha (s(t))}) \\
+		& = {F_m(t) \over m} + {F_b(t) \over m} - {F_{air} \over m} - {F_\alpha (t) \over m} \\
+		%& F_{tire} = F_m+F_b+F_{air}+F_{\alpha} \\
+		v_{min} &\le v(t) \le v_{max} \\
+		P_{motor}(v(t),F_m(t)) & = \theta(c_1+c_2F_m+c_3F_m^2+c_4v^2+c_5v^2F_m+c_6v^4)\\
+		\theta & \in [1, 0.1, 10^{-2}, \cdots,10^{-7}]\\
+		F_{m,min}(v(t)) &\le F_m(t) \le F_{m,max}(v(t)) \\
+		F_{b,min} &\le F_b(t) \le F_{b,max} \\
+		F_m(t)F_b(t) &\ge 0 \\
+		s(t) &\le s_{FV}(t) \\
+		v(0) &= 10[m/s] \\
+		v_{FV}(0) & = 0[m/s] \\
+		v(t_f)& = \text{free} \\
+		s(0) & = 0[m] \\
+		s_{FV}(0) & = 100[m] \\
+		s(t_f) & = \text{free}
+		%& u_{p,min}(v(t),t) \le u_p(t) \le u_{p,max}(v(t),t) \\
+		%& 0 \le u_b(t) \le u_{b,max} \\
+	\end{align}
+	
+	\begin{align}
+		\mathbf{\Phi}(s(t_f)) = \begin{cases}
+			-s(t_f) & (s(t_f)  \le s_{FV}(t_f)) \\
+			\inf & (s(t_f) \ge s_{FV}(t_f))
+		\end{cases}
+	\end{align}
+	
+터미널코스트 들어가있음 (22.02.16)
+	
+\end{document}
